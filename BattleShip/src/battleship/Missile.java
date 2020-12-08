@@ -5,7 +5,7 @@ import java.awt.*;
 public class Missile {
     private Color color;
   
-  Piece(Color _color)
+  Missile(Color _color)
     {
         color = _color;
     }
