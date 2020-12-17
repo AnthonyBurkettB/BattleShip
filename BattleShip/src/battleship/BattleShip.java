@@ -6,19 +6,21 @@ import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Battleship extends JFrame implements Runnable {
+public class BattleShip extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
-
+    
+    boolean CordBoard = false;
+    
     public static void main(String[] args) {
-        Battleship frame = new Battleship();
+        BattleShip frame = new BattleShip();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    public Battleship() {
+    public BattleShip() {
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
 
@@ -53,7 +55,9 @@ public class Battleship extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
+                    CordBoard = true;
                 } else if (e.VK_DOWN == e.getKeyCode()) {
+                    CordBoard = false;
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
@@ -83,6 +87,8 @@ public class Battleship extends JFrame implements Runnable {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
         }
+        
+        if (CordBoard == false) {
 //fill background
         
         g.setColor(Color.cyan);
@@ -96,13 +102,34 @@ public class Battleship extends JFrame implements Runnable {
 // draw border
         g.setColor(Color.red);
         g.drawPolyline(x, y, 5);
-
+        
         if (animateFirstTime) {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
         
-              
+        }
+        
+        if (CordBoard == true) {
+//fill background
+        
+        g.setColor(Color.red);
+        g.fillRect(0, 0, Window.xsize, Window.ysize);
+
+        int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
+        int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
+//fill border
+        g.setColor(Color.black);
+        g.fillPolygon(x, y, 4);
+// draw border
+        g.setColor(Color.red);
+        g.drawPolyline(x, y, 5);
+        
+        if (animateFirstTime) {
+            gOld.drawImage(image, 0, 0, null);
+            return;
+        }
+        
         
         gOld.drawImage(image, 0, 0, null);
     }
