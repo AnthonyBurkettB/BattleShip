@@ -84,6 +84,7 @@ public class BattleShip extends JFrame implements Runnable {
             Window.ysize = getSize().height;
             image = createImage(Window.xsize, Window.ysize);
             g = (Graphics2D) image.getGraphics();
+            Drawing.setDrawingInfo(g,this);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
         }
@@ -132,6 +133,7 @@ public class BattleShip extends JFrame implements Runnable {
         
         
         gOld.drawImage(image, 0, 0, null);
+    }
     }
 
 ////////////////////////////////////////////////////////////////////////////
