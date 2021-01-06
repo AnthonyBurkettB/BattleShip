@@ -10,7 +10,7 @@ public class Ship {
     private static Image shipImage4;
     private static Image shipImage5;
 
-    public static void Reset(Battleship _mainclass) {
+    public static void Reset(BattleShip _mainclass) {
         shipImage1 = Toolkit.getDefaultToolkit().getImage("./Ship1.png");
         shipImage2 = Toolkit.getDefaultToolkit().getImage("./Ship2.png");
         shipImage3 = Toolkit.getDefaultToolkit().getImage("./Ship3.png");
@@ -23,15 +23,15 @@ public class Ship {
         type = _type;        
         int randomVal = (int)(Math.random() * 5);
         if (randomVal == 0) 
-            type == shipType.SHIP1;
+            type = shipType.SHIP1;
         if (randomVal == 1) 
-            type == shipType.SHIP2;
+            type = shipType.SHIP2;
         if (randomVal == 2) 
-            type == shipType.SHIP3;
+            type = shipType.SHIP3;
         if (randomVal == 3) 
-            type == shipType.SHIP4;
+            type = shipType.SHIP4;
         if (randomVal == 4) 
-            type == shipType.SHIP5;
+            type = shipType.SHIP5;
     }
 
     public shipType getType() {
