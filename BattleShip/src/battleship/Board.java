@@ -10,20 +10,19 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Board {
-    private final static int NUM_CONNECT = 4;
-    private final static int NUM_ROWS = 8;
-    private final static int NUM_COLUMNS = 8;
-    private final static int CordNUM_ROWS= 8;
+    private final static int NUM_ROWS = 14;
+    private final static int NUM_COLUMNS = 14;
+    private final static int CordNUM_ROWS= 14;
     private final static int CordNUM_COLUMNS= 8;  
-    private final static int P2NUM_ROWS= 8;  
-    private final static int P2NUM_COLUMNS= 8;
-    private final static int P2CordNUM_ROWS= 8;
-    private final static int P2CordNUM_COLUMNS= 8;
+    private final static int P2NUM_ROWS= 14;  
+    private final static int P2NUM_COLUMNS= 14;
+    private final static int P2CordNUM_ROWS= 14;
+    private final static int P2CordNUM_COLUMNS= 14;
     private static Ship board[][] = new Ship[NUM_ROWS][NUM_COLUMNS];
     private static Ship MBoard[][] = new Ship[CordNUM_ROWS][CordNUM_COLUMNS];
     private static Ship P2Board[][] = new Ship[P2NUM_ROWS][P2NUM_COLUMNS];
     private static Ship P2MBoard[][] = new Ship[P2CordNUM_ROWS][P2CordNUM_COLUMNS];
-    boolean CordBoard = false;
+    private static boolean CordBoard = false;
     
     public static void Reset() {
 //clear the board.
@@ -31,18 +30,17 @@ public class Board {
             for (int zcol=0;zcol<NUM_COLUMNS;zcol++)
                 board[zrow][zcol] = null;  
        // winner = WinState.NO_WIN;
-   
     }
     
      public Player getcurrentPlayer() {
-         Player currentTurn = new currentTurn();
+         Player currentTurn = Player.GetCurrentPlayer();
          return(currentTurn);
      }
     
     public static void Draw(Graphics2D g) {
      //draw grid
-     if (currentTurn == players[1]) {
-       if (Cordboard == false) {
+     if (Player.GetCurrentPlayer() == Player.GetPlayer2()) {
+       if (CordBoard == false) {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
     //    System.out.println(xdelta + " " + ydelta);
@@ -68,7 +66,7 @@ public class Board {
             }
         }   
        }
-        if (Cordboard == true) {
+        if (CordBoard == true) {
         int ydelta = Window.getHeight2()/CordNUM_ROWS;
         int xdelta = Window.getWidth2()/CordNUM_COLUMNS;
     //    System.out.println(xdelta + " " + ydelta);
@@ -89,15 +87,15 @@ public class Board {
         {
             for (int zcol=0;zcol<CordNUM_COLUMNS;zcol++)        
             {
-                if (Mboard[zrow][zcol] != null)
-                    Mboard[zrow][zcol].draw(g, zrow, zcol,xdelta, ydelta);
+                if (MBoard[zrow][zcol] != null)
+                    MBoard[zrow][zcol].draw(g, zrow, zcol,xdelta, ydelta);
             }
         }   
        }
      }
      
-     if (currentTurn == players[2]) {
-       if (Cordboard == false) {
+     if (Player.GetCurrentPlayer() == Player.GetPlayer2()) {
+       if (CordBoard == false) {
         int ydelta = Window.getHeight2()/P2NUM_ROWS;
         int xdelta = Window.getWidth2()/P2NUM_COLUMNS;
     //    System.out.println(xdelta + " " + ydelta);
@@ -123,7 +121,7 @@ public class Board {
             }
         }   
        }
-        if (Cordboard == true) {
+        if (CordBoard == true) {
         int ydelta = Window.getHeight2()/P2CordNUM_ROWS;
         int xdelta = Window.getWidth2()/P2CordNUM_COLUMNS;
     //    System.out.println(xdelta + " " + ydelta);
@@ -144,8 +142,8 @@ public class Board {
         {
             for (int zcol=0;zcol<P2CordNUM_COLUMNS;zcol++)        
             {
-                if (Mboard[zrow][zcol] != null)
-                    Mboard[zrow][zcol].draw(g, zrow, zcol,xdelta, ydelta);
+                if (MBoard[zrow][zcol] != null)
+                    MBoard[zrow][zcol].draw(g, zrow, zcol,xdelta, ydelta);
             }
         }   
        }
